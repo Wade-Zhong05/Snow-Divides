@@ -1,0 +1,81 @@
+# Snow Divides
+
+*Do snow seasons draw the climate boundaries of the Tibetan Plateau?*
+
+CS-521 Graph-based Data Analysis (Duke, Fall 2026). Team project for HW1 Part II.
+
+## Motivation
+
+The Tibetan Plateau is split between two climates: the **westerlies** in the northwest and
+the **Indian monsoon** in the southeast, with a transition zone in between. The divide
+matters because glaciers behave differently on each side. Those in the northwest are
+stable or advancing, while those in the southeast retreat fastest (Yao et al., 2012).
+
+Snow records when precipitation falls and how cold it is. So the shape of the snow season
+(when snow arrives, how fast it builds up, how fast it melts) should carry the same
+climate signature. A kNN graph of these shapes can find the regions without supervision.
+Its Laplacian spectrum then lets us study the boundaries between them.
+
+## 1. Research question
+
+> From snow alone, does a kNN graph of snow-season shapes recover the plateau's climate
+> regions? Are the boundaries between them sharp divides, or broad transition zones that
+> shift from year to year?
+
+| | Hypothesis | Test |
+|---|---|---|
+| **H1** Regions | The graph's partition is spatially coherent and matches the westerly / transition / monsoon pattern, and elevation alone does not explain it. | Map the nodal domains and spectral clusters. Compare them with a DEM and with 82 glacier records (Yao et al., 2012). Repeat within a single elevation band. |
+| **H2** Boundaries | Boundaries are broad, shifting belts, not lines. | Three checks: the gradient of the spectral embedding on the map; the clustering coefficient of border pixels; how often border pixels switch regime across per-year graphs. |
+| **H3** Confounds | Part of the partition is not climate. | Elevation; glacier ice read as snow (use glacier fraction per pixel as a covariate); satellite sensor changes (look for jumps in graph statistics in the years the sensor changed). |
+
+## 2. Method
+
+- **Vertices:** about 3,800 grid cells (0.25°) on the plateau (26–40°N, 73–105°E), each
+  with at least 30 snow days per year.
+- **Attributes:** daily snow depth over 14 snow years (1 Aug – 31 Jul), 2000/01–2013/14.
+- **Feature, temporal HOG** (HW1 1-b):
+  - the orientation of each day is the slope angle of the depth curve;
+  - 6 bins, from fast melt to fast accumulation;
+  - half-month cells, blocks of 2 cells normalised with L2-Hys;
+  - averaged over the 14 years, giving d = 288.
+
+  It captures the timing and speed of snow change, not the amount of snow.
+- **Distance:** square root of the Jensen–Shannon divergence; Hellinger distance as a check.
+- **Graph:** kNN with k = 21–26, symmetrised by union, self-tuning Gaussian weights,
+  normalized Laplacian, spectral clustering.
+
+| Item | Question it answers |
+|---|---|
+| E-1 | Which temporal resolution reveals the regimes? (Cell length, and so d, is a hyperparameter; the raw depth curve is the baseline.) |
+| E-2 | Are the results robust to the choice of metric? |
+| E-3 | In what order do regions merge as k grows? This ranks how distinct each region is. |
+| E-4 | Do border pixels have lower clustering coefficients? If so, boundaries can be found from graph structure alone. |
+| E-5 | How many regimes are there (eigengap)? Do nodal domains follow climate rather than elevation? How sharp is each boundary? |
+| E-6 | Per-year partitions: which areas are stable cores and which are shifting transition belts? Is there a jump when the sensor changes? |
+| E-7 | What holds up, and how far each confound has been ruled out. |
+
+## 3. Data
+
+All datasets come from the National Tibetan Plateau Data Center (TPDC,
+https://data.tpdc.ac.cn) and are licensed CC BY-NC-SA 4.0. Raw data are not included in
+this repository.
+
+| Dataset | Authors | Content | Size | Used for |
+|---|---|---|---|---|
+| [Long-term series of daily snow depth dataset in China (1979–2025)](https://data.tpdc.ac.cn/en/data/df40346a-0202-4ed2-bb07-b65dfcda9368) | Tao Che, Liyun Dai, Xin Li | Daily snow depth on a 0.25° grid, from passive microwave (SMMR, SSM/I, SSMIS) | 362 MB | Vertices and features (2000–2014) |
+| [Snowmelt onset time of High Mountain Asia (1979–2018)](https://data.tpdc.ac.cn/en/data/01be1b50-d9b6-4189-8aa0-9e005514b6d1) | Chuan Xiong, Jiancheng Shi, Ruzhen Yao, Yonghui Lei, Jinmei Pan | Yearly melt-onset date, plus a DEM band | 2.8 MB | Elevation (DEM band only) |
+| [Different glacier status with atmospheric circulations in Tibetan Plateau and surroundings (1970s–2000s)](https://data.tpdc.ac.cn/en/data/439b01bd-1799-4171-b9ed-16e82ccc43df) | Tandong Yao | Supplementary tables of Yao et al. (2012) | 40 KB | Glacier locations and length change (Table S4), as an external check |
+
+**Citation.** Cite each dataset together with the papers listed under it, and
+acknowledge: *"This dataset is provided by the National Tibetan Plateau / Third Pole
+Environment Data Center (https://data.tpdc.ac.cn/)."*
+
+- Che, T., Dai, L., & Li, X. (2015). Long-term series of daily snow depth dataset in China (1979–2025). National Tibetan Plateau Data Center. https://doi.org/10.11888/Geogra.tpdc.270194
+  - Che, T., Li, X., Jin, R., Armstrong, R., & Zhang, T. (2008). Snow depth derived from passive microwave remote-sensing data in China. *Annals of Glaciology*, 49, 145–154.
+  - Dai, L., Che, T., & Ding, Y. (2015). Inter-calibrating SMMR, SSM/I and SSMI/S data to improve the consistency of snow-depth products in China. *Remote Sensing*, 7(6), 7212–7230.
+  - Dai, L., Che, T., Ding, Y., & Hao, X. (2017). Evaluation of snow cover and snow depth on the Qinghai–Tibetan Plateau derived from passive microwave remote sensing. *The Cryosphere*, 11(4), 1933–1948.
+- Xiong, C., Shi, J., Yao, R., Lei, Y., & Pan, J. (2020). Snowmelt onset time of High Mountain Asia (1979–2018). National Tibetan Plateau Data Center. https://doi.org/10.11888/Snow.tpdc.270307
+  - Xiong, C., Shi, J., Cui, Y., & Peng, B. (2017). Snowmelt pattern over High-Mountain Asia detected from active and passive microwave remote sensing. *IEEE Geoscience and Remote Sensing Letters*, 14, 1096–1100.
+  - Xiong, C., Yao, R., Shi, J., Lei, Y., & Pan, J. (2019). Changes in snow and ice melt timing over High Mountain Asia. *Chinese Science Bulletin*, 64(27), 2885–2893 (in Chinese).
+- Yao, T. (2019). Different glacier status with atmospheric circulations in Tibetan Plateau and surroundings (1970s–2000s). National Tibetan Plateau Data Center. https://doi.org/10.11888/Glacio.tpdc.270100
+  - Yao, T., Thompson, L., Yang, W., et al. (2012). Different glacier status with atmospheric circulations in Tibetan Plateau and surroundings. *Nature Climate Change*, 2, 663–667.
