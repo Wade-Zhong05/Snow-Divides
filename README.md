@@ -79,3 +79,32 @@ Environment Data Center (https://data.tpdc.ac.cn/)."*
   - Xiong, C., Yao, R., Shi, J., Lei, Y., & Pan, J. (2019). Changes in snow and ice melt timing over High Mountain Asia. *Chinese Science Bulletin*, 64(27), 2885–2893 (in Chinese).
 - Yao, T. (2019). Different glacier status with atmospheric circulations in Tibetan Plateau and surroundings (1970s–2000s). National Tibetan Plateau Data Center. https://doi.org/10.11888/Glacio.tpdc.270100
   - Yao, T., Thompson, L., Yang, W., et al. (2012). Different glacier status with atmospheric circulations in Tibetan Plateau and surroundings. *Nature Climate Change*, 2, 663–667.
+
+## Current Part II pipeline (EXP-0009)
+
+The method above is the original project proposal. The executable experiment now follows the homework's E-1 → E-2 → E-3 → E-4 → E-5 order. It uses a 24-window × 9-bin signed temporal-gradient histogram plus snow occurrence, a complete pairwise feature-distance matrix, a kNN graph derived from that matrix, combinatorial connectivity diagnostics, and normalized-Laplacian partitions. This differs from the proposed 288-dimensional HOG/Jensen–Shannon setup; the change and each attempt are recorded in [the append-only experiment log](docs/experiment-log.md).
+
+```text
+pipeline.py                  Root command and all implemented-stage parameters
+snow_divides/e1_features/   Daily input and time-gradient features
+snow_divides/e2_interactions/  All-to-all weighted feature distance matrix
+snow_divides/e3_knn/        kNN adjacency matrices and connectivity scan
+snow_divides/e4_connectivity/  Degree and local clustering distributions
+snow_divides/e5_laplacian/  Spectrum, Fiedler cut, spectral partitions and maps
+snow_divides/e6_optional/   Optional methods, not run yet
+snow_divides/e7_discussion/ Discussion stage; observations are in docs
+outputs/                    New pipeline runs, each in a separate directory
+feature_extraction/         Preserved EXP-0005/0007 code and historical output
+```
+
+```bash
+uv sync --locked
+uv run python pipeline.py --help
+uv run python pipeline.py --output outputs/my-part2-run
+```
+
+The root `pyproject.toml` and `uv.lock` manage the new environment. The source snow archives remain in `data/snow depth/`; each new run writes E-1 through E-5 artifacts under one root `outputs/` directory. Existing `feature_extraction/outputs/` files are historical and remain in place. See [the pipeline report](docs/part2-pipeline-exp-0009.md) for the EXP-0009 k and cluster-count criteria, reproduction commands, saved matrix formats, and geographic figures.
+
+For an offline rotatable 3D spectral embedding, a reordered distance/adjacency matrix view, and a guide to interpreting every figure, see [the EXP-0010 figure guide](docs/figure-guide-exp-0010.md). Use `uv run python export_views.py <completed-run> <new-output-directory>` to export these views from an existing run.
+
+The [CS-521 Part II experiment report](docs/cs521-part2-report.md) presents E-1 through E-7, including the E-4 connectivity analysis added after EXP-0009, and states the authors' and AI assistant's contributions. A six-page PDF is in `outputs/exp-0011-part2-report/`.

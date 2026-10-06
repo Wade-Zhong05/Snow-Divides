@@ -1,0 +1,112 @@
+{
+  "supersedes": "data-samples-extra-2026-10-05.json TXT statistics: unconditional skiprows=6 incorrectly dropped data rows in headerless files",
+  "samples": [
+    {
+      "archive": "data/snow depth/daily snow depth_AMSRE_full/2002.rar",
+      "member": "2002180.txt",
+      "has_header": false,
+      "shape": [
+        161,
+        321
+      ],
+      "min": 0.0,
+      "max": 17.9,
+      "negative_count": 0,
+      "zero_count": 50869,
+      "decimal_places": [
+        1
+      ]
+    },
+    {
+      "archive": "data/snow depth/daily snow depth_amsr2_China_full（2012-2024-08）.rar",
+      "member": "daily snow depth_amsr2_China_full（2012-2024-08）/20120901.txt",
+      "has_header": true,
+      "shape": [
+        161,
+        321
+      ],
+      "min": -1.0,
+      "max": 21.4,
+      "negative_count": 10503,
+      "zero_count": 40828,
+      "decimal_places": [
+        1
+      ]
+    },
+    {
+      "archive": "data/snow depth/daily snow depth_amsr2_China_full（2024-08-2025-11）.rar",
+      "member": "20240901.tif",
+      "shape": [
+        161,
+        321
+      ],
+      "crs": "EPSG:4326",
+      "transform": [
+        0.25,
+        0.0,
+        59.875,
+        0.0,
+        -0.25,
+        55.375,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "bounds": [
+        59.875,
+        15.125,
+        140.125,
+        55.375
+      ],
+      "nodata": null,
+      "dtype": [
+        "float64"
+      ],
+      "tags": {
+        "AREA_OR_POINT": "Area"
+      },
+      "scales": [
+        1.0
+      ],
+      "offsets": [
+        0.0
+      ],
+      "min": -1.0,
+      "max": 34.292999999999985,
+      "negative_count": 481,
+      "zero_count": 50933
+    },
+    {
+      "archive": "data/snow depth/snowdepth-2020.rar",
+      "member": "2020/2020001.txt",
+      "has_header": false,
+      "shape": [
+        161,
+        321
+      ],
+      "min": 0.0,
+      "max": 32.8,
+      "negative_count": 0,
+      "zero_count": 34804,
+      "decimal_places": [
+        1
+      ]
+    },
+    {
+      "archive": "data/snow depth/闰年最后一天.rar",
+      "member": "闰年最后一天/闰年最后一天/1984366.txt",
+      "has_header": false,
+      "shape": [
+        161,
+        321
+      ],
+      "min": -1.0,
+      "max": 51.3,
+      "negative_count": 1871,
+      "zero_count": 35043,
+      "decimal_places": [
+        1
+      ]
+    }
+  ]
+}
