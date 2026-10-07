@@ -11,6 +11,7 @@ Runs: perplexity 5, 30, 100 from a PCA start, and perplexity 30 from a random st
 The 2-D Laplacian eigenmap (q2, q3) is scored the same way, for comparison.
 """
 import json
+import sys
 import time
 
 import matplotlib
@@ -78,19 +79,26 @@ def main():
     (ROOT / "experiment" / "tsne.json").write_text(json.dumps(out, indent=1))
     np.savez_compressed(ROOT / "results" / "tsne.npz", **{k.replace(" ", "_"): v for k, v in maps.items()})
 
-    # ---------------------------------------------------------------- figure
+    plot(maps, out, z)
+    print(f"done in {time.time() - t0:.0f}s")
+
+
+def plot(maps, out, z):
+    """Figure from saved maps (results/tsne.npz) and scores (experiment/tsne.json)."""
+    lab, Q, vlon, velev, kept, pix2v, g_near = (z[k] for k in ("lab", "Q", "vlon", "velev", "kept", "pix2v", "g_near"))
+    eig = Q[:, 1:3] / Q[:, 1:3].std(0)
     gl = data.glaciers()
     gv = pix2v[g_near]                                         # glacier -> vertex
     main_map = maps["perplexity 30 (PCA start)"]
-    fig, axes = plt.subplots(2, 4, figsize=(17, 8.6))
-    panels = [(main_map, "region", "(a) t-SNE, perplexity 30: K=3 regions, ▲ glaciers"),
+    fig, axes = plt.subplots(2, 4, figsize=(18, 9), gridspec_kw=dict(wspace=0.18, hspace=0.25))
+    panels = [(main_map, "region", "(a) t-SNE, perplexity 30; ▲ glaciers"),
               (main_map, vlon, "(b) same map: longitude (°E)"),
               (main_map, velev, "(c) same map: elevation (m)"),
               (main_map, kept, "(d) same map: years (of 14) in its region"),
               (maps["perplexity 5 (PCA start)"], "region", "(e) perplexity 5"),
               (maps["perplexity 100 (PCA start)"], "region", "(f) perplexity 100"),
               (maps["perplexity 30 (random start)"], "region", "(g) perplexity 30, random start"),
-              (eig, "region", "(h) Laplacian eigenmap (q2, q3), for comparison")]
+              (eig, "region", "(h) Laplacian eigenmap (q2, q3)")]
     for ax, (Y, col, title) in zip(axes.ravel(), panels):
         if isinstance(col, str):
             for j in range(3):
@@ -110,14 +118,19 @@ def main():
             key = "perplexity 30 (PCA start)"
         if key:
             s_ = out[key]
-            title += f"\nneighbours kept {s_['nn_keep']:.2f} · same region {s_['same_reg']:.2f} · k-means ARI {s_['kmeans_ari']:.2f}"
+            title += f"\nNN kept {s_['nn_keep']:.2f}, same region {s_['same_reg']:.2f}, k-means ARI {s_['kmeans_ari']:.2f}"
         ax.set_title(title, fontsize=8.8)
         ax.set_xticks([]); ax.set_yticks([])
         for sp in ax.spines.values():
             sp.set_color(GRID)
     fig.savefig(ROOT / "experiment" / "figures" / "tsne.png")
-    print(f"done in {time.time() - t0:.0f}s")
 
 
 if __name__ == "__main__":
-    main()
+    if "--plot" in sys.argv:                 # redraw from saved results, no new t-SNE runs
+        z = np.load(ROOT / "results" / "experiment.npz")
+        saved = np.load(ROOT / "results" / "tsne.npz")
+        out = json.loads((ROOT / "experiment" / "tsne.json").read_text())
+        plot({k.replace("_", " "): saved[k] for k in saved.files}, out, z)
+    else:
+        main()
