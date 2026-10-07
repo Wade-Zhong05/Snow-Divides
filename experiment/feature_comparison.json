@@ -1,0 +1,1074 @@
+{
+ "raw depth (no gradient)": {
+  "family": "baseline",
+  "principle": "share of the year's snow depth in each half-month",
+  "d": 24,
+  "metric": "hellinger",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    3,
+    0,
+    0
+   ],
+   "II": [
+    1,
+    4,
+    0
+   ],
+   "III": [
+    4,
+    4,
+    0
+   ],
+   "IV": [
+    20,
+    0,
+    0
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8533572068039391,
+  "climate": 0.7774467751050056,
+  "elev_eta": 0.23042289076767275,
+  "split": 0.7224181440807823,
+  "split_sd": 0.07097935711489084,
+  "split_nn": 0.36862637946476007,
+  "era": 0.6046637258462034,
+  "era_nn": 0.29984668397164416,
+  "k_c": 4,
+  "cc": 0.4480796586059744,
+  "lam": [
+   0.0066,
+   0.0113,
+   0.0174,
+   0.0272
+  ],
+  "sizes": [
+   770,
+   1606,
+   761
+  ],
+  "vs_main": 0.4702477926370245
+ },
+ "snow occurrence only": {
+  "family": "baseline",
+  "principle": "share of days with snow in each half-month (no gradient)",
+  "d": 24,
+  "metric": "euclidean",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9324324324324325,
+  "glacier_by_region": {
+   "I": [
+    0,
+    3,
+    0
+   ],
+   "II": [
+    0,
+    0,
+    5
+   ],
+   "III": [
+    1,
+    4,
+    3
+   ],
+   "IV": [
+    18,
+    2,
+    0
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    1,
+    2
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.7576544315129812,
+  "climate": 0.5541096244298012,
+  "elev_eta": 0.04713177292888417,
+  "split": 0.7432420082362996,
+  "split_sd": 0.045304371029390646,
+  "split_nn": 0.2765274678567634,
+  "era": 0.4750345825225956,
+  "era_nn": 0.16746360641802144,
+  "k_c": 3,
+  "cc": 0.4482758620689655,
+  "lam": [
+   0.0033,
+   0.0079,
+   0.0132,
+   0.0174
+  ],
+  "sizes": [
+   550,
+   1349,
+   1238
+  ],
+  "vs_main": 0.23326085699159027
+ },
+ "teammate hf102 (default)": {
+  "family": "single lag",
+  "principle": "day counts per daily-change bin per half-month (Hellinger) + snow-day share, 50/50",
+  "d": 240,
+  "metric": "euclidean",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9054054054054054,
+  "glacier_by_region": {
+   "I": [
+    0,
+    3,
+    0
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    0,
+    6,
+    2
+   ],
+   "IV": [
+    14,
+    6,
+    0
+   ],
+   "V": [
+    40,
+    1,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8730528200537153,
+  "climate": 0.6664112651367584,
+  "elev_eta": 0.14542617664409635,
+  "split": 0.7320778492418233,
+  "split_sd": 0.022070498290125747,
+  "split_nn": 0.22239324802283042,
+  "era": 0.6030731696057704,
+  "era_nn": 0.15911471378478073,
+  "k_c": 3,
+  "cc": 0.34581105169340465,
+  "lam": [
+   0.0114,
+   0.0216,
+   0.0389,
+   0.0518
+  ],
+  "sizes": [
+   395,
+   1935,
+   807
+  ],
+  "vs_main": 0.47923068582518125
+ },
+ "teammate hf102 (gradient only)": {
+  "family": "single lag",
+  "principle": "the same without the snow-day share",
+  "d": 240,
+  "metric": "euclidean",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9054054054054054,
+  "glacier_by_region": {
+   "I": [
+    3,
+    0,
+    0
+   ],
+   "II": [
+    5,
+    0,
+    0
+   ],
+   "III": [
+    6,
+    1,
+    1
+   ],
+   "IV": [
+    20,
+    0,
+    0
+   ],
+   "V": [
+    37,
+    4,
+    0
+   ],
+   "VI": [
+    2,
+    1,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8004476275738586,
+  "climate": 0.583872612955524,
+  "elev_eta": 0.10490010857005848,
+  "split": 0.24009283059589953,
+  "split_sd": 0.06445367486407252,
+  "split_nn": 0.1495301850418204,
+  "era": 0.44739379242512395,
+  "era_nn": 0.11230019581948177,
+  "k_c": 3,
+  "cc": 0.3287526427061311,
+  "lam": [
+   0.0174,
+   0.047,
+   0.0573,
+   0.0727
+  ],
+  "sizes": [
+   1330,
+   1064,
+   743
+  ],
+  "vs_main": 0.2590293586795559
+ },
+ "HOG, lag 1": {
+  "family": "single lag",
+  "principle": "daily change, each day votes |change|; half-month cells, block-normalised",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9459459459459459,
+  "glacier_by_region": {
+   "I": [
+    0,
+    3,
+    0
+   ],
+   "II": [
+    1,
+    4,
+    0
+   ],
+   "III": [
+    3,
+    5,
+    0
+   ],
+   "IV": [
+    19,
+    1,
+    0
+   ],
+   "V": [
+    40,
+    1,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    1,
+    1,
+    0
+   ]
+  },
+  "contiguity": 0.8357206803939122,
+  "climate": 0.7477169368577454,
+  "elev_eta": 0.1315418463917583,
+  "split": 0.7285063502671173,
+  "split_sd": 0.04512573071119734,
+  "split_nn": 0.28080817280689774,
+  "era": 0.5749313129738142,
+  "era_nn": 0.2038040590798002,
+  "k_c": 4,
+  "cc": 0.4,
+  "lam": [
+   0.0073,
+   0.016,
+   0.0257,
+   0.0415
+  ],
+  "sizes": [
+   697,
+   1749,
+   691
+  ],
+  "vs_main": 0.5287026955674767
+ },
+ "HOG, smoothed (main)": {
+  "family": "single lag",
+  "principle": "as above after 2-day Gaussian smoothing (the report's feature)",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8713518352730528,
+  "climate": 0.744689129949405,
+  "elev_eta": 0.12740838621534148,
+  "split": 0.4167441555336291,
+  "split_sd": 0.12572889666094003,
+  "split_nn": 0.39181504925846655,
+  "era": 0.5089064665589966,
+  "era_nn": 0.3114744144390303,
+  "k_c": 4,
+  "cc": 0.41904761904761906,
+  "lam": [
+   0.0101,
+   0.0215,
+   0.0247,
+   0.0385
+  ],
+  "sizes": [
+   709,
+   1383,
+   1045
+  ],
+  "vs_main": 1.0
+ },
+ "HOG, lag 3": {
+  "family": "single lag",
+  "principle": "change over 3 days",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    3,
+    0
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    2,
+    3
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8501342882721575,
+  "climate": 0.7509531946768705,
+  "elev_eta": 0.13849165239649064,
+  "split": 0.7729254196393273,
+  "split_sd": 0.03884446364510469,
+  "split_nn": 0.3468099640238626,
+  "era": 0.6483357632222938,
+  "era_nn": 0.2565235211075186,
+  "k_c": 5,
+  "cc": 0.41304347826086957,
+  "lam": [
+   0.0083,
+   0.0167,
+   0.0227,
+   0.0321
+  ],
+  "sizes": [
+   684,
+   1610,
+   843
+  ],
+  "vs_main": 0.715240513446058
+ },
+ "HOG, lag 7": {
+  "family": "single lag",
+  "principle": "change over 1 week",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.972972972972973,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    1,
+    4,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8702775290957923,
+  "climate": 0.7694565447564062,
+  "elev_eta": 0.11691089051869881,
+  "split": 0.5452331318603688,
+  "split_sd": 0.1632516860654603,
+  "split_nn": 0.4179486011809888,
+  "era": 0.26572803369682946,
+  "era_nn": 0.322919987248964,
+  "k_c": 4,
+  "cc": 0.4365079365079365,
+  "lam": [
+   0.0102,
+   0.018,
+   0.0187,
+   0.0296
+  ],
+  "sizes": [
+   713,
+   1382,
+   1042
+  ],
+  "vs_main": 0.8994953744236251
+ },
+ "HOG, lag 15": {
+  "family": "single lag",
+  "principle": "change over 2 weeks",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8794986571172784,
+  "climate": 0.8015195296677424,
+  "elev_eta": 0.11414643578164944,
+  "split": 0.7717904056260493,
+  "split_sd": 0.05540070921736586,
+  "split_nn": 0.466293243468889,
+  "era": 0.6579984733772875,
+  "era_nn": 0.38089166173323014,
+  "k_c": 3,
+  "cc": 0.4430769230769231,
+  "lam": [
+   0.0115,
+   0.0172,
+   0.0246,
+   0.0291
+  ],
+  "sizes": [
+   689,
+   1337,
+   1111
+  ],
+  "vs_main": 0.8701372646953002
+ },
+ "HOG, lag 31": {
+  "family": "single lag",
+  "principle": "change over 1 month",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8810205908683975,
+  "climate": 0.8201530392906268,
+  "elev_eta": 0.10101206791918556,
+  "split": 0.7150088689922988,
+  "split_sd": 0.07354499356038995,
+  "split_nn": 0.4773107457838092,
+  "era": 0.7013522648045798,
+  "era_nn": 0.39344536029266663,
+  "k_c": 4,
+  "cc": 0.45652173913043476,
+  "lam": [
+   0.0122,
+   0.017,
+   0.0233,
+   0.0271
+  ],
+  "sizes": [
+   740,
+   1273,
+   1124
+  ],
+  "vs_main": 0.7817861433876134
+ },
+ "HOG, lag 61": {
+  "family": "single lag",
+  "principle": "change over 2 months",
+  "d": 288,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    4,
+    1,
+    3
+   ],
+   "IV": [
+    20,
+    0,
+    0
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    1,
+    1,
+    0
+   ]
+  },
+  "contiguity": 0.8787824529991047,
+  "climate": 0.7733392813393104,
+  "elev_eta": 0.09964280905208885,
+  "split": 0.5692094064937699,
+  "split_sd": 0.10452066724014233,
+  "split_nn": 0.4358668427524021,
+  "era": 0.5525614878704762,
+  "era_nn": 0.35675577212077053,
+  "k_c": 4,
+  "cc": 0.45161290322580644,
+  "lam": [
+   0.0128,
+   0.0167,
+   0.0226,
+   0.0274
+  ],
+  "sizes": [
+   777,
+   1178,
+   1182
+  ],
+  "vs_main": 0.6583487104333533
+ },
+ "multi-scale HOG (1-31)": {
+  "family": "multi-scale",
+  "principle": "lags 1, 3, 7, 15, 31 concatenated",
+  "d": 1440,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8755595344673232,
+  "climate": 0.8028273604351173,
+  "elev_eta": 0.1054797060188148,
+  "split": 0.8026951256261927,
+  "split_sd": 0.039727093124653834,
+  "split_nn": 0.5077796499537015,
+  "era": 0.5827118796922007,
+  "era_nn": 0.39884937079709154,
+  "k_c": 4,
+  "cc": 0.45454545454545453,
+  "lam": [
+   0.0101,
+   0.0162,
+   0.0205,
+   0.0265
+  ],
+  "sizes": [
+   726,
+   1322,
+   1089
+  ],
+  "vs_main": 0.8786715443268437
+ },
+ "multi-scale HOG (7-61)": {
+  "family": "multi-scale",
+  "principle": "lags 7, 15, 31, 61 concatenated",
+  "d": 1152,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    0,
+    0,
+    3
+   ],
+   "II": [
+    0,
+    5,
+    0
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    19,
+    0,
+    1
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8817367949865712,
+  "climate": 0.8318492222516961,
+  "elev_eta": 0.09728299511680333,
+  "split": 0.7589015606932764,
+  "split_sd": 0.060583639688306434,
+  "split_nn": 0.5273251665983575,
+  "era": 0.657270693378021,
+  "era_nn": 0.42524705132292,
+  "k_c": 4,
+  "cc": 0.466403162055336,
+  "lam": [
+   0.0117,
+   0.0163,
+   0.0227,
+   0.0274
+  ],
+  "sizes": [
+   728,
+   1283,
+   1126
+  ],
+  "vs_main": 0.8207371594234999
+ },
+ "Haar wavelet energy": {
+  "family": "signal",
+  "principle": "energy of box-smoothed gradients at 2-64-day scales, per month and sign",
+  "d": 144,
+  "metric": "hellinger",
+  "glacier_recovered": true,
+  "glacier_purity": 0.7162162162162162,
+  "glacier_by_region": {
+   "I": [
+    0,
+    3,
+    0
+   ],
+   "II": [
+    0,
+    0,
+    5
+   ],
+   "III": [
+    2,
+    4,
+    2
+   ],
+   "IV": [
+    0,
+    20,
+    0
+   ],
+   "V": [
+    40,
+    1,
+    0
+   ],
+   "VI": [
+    0,
+    0,
+    3
+   ],
+   "VII": [
+    0,
+    0,
+    2
+   ]
+  },
+  "contiguity": 0.8725156669650851,
+  "climate": 0.7712842593005854,
+  "elev_eta": 0.03566012607263782,
+  "split": 0.41675706865227313,
+  "split_sd": 0.08206669553433715,
+  "split_nn": 0.45679068567178227,
+  "era": 0.3161825151133317,
+  "era_nn": 0.385035748440275,
+  "k_c": 3,
+  "cc": 0.4523809523809524,
+  "lam": [
+   0.0116,
+   0.0179,
+   0.0205,
+   0.0252
+  ],
+  "sizes": [
+   510,
+   845,
+   1782
+  ],
+  "vs_main": 0.33447243379966457
+ },
+ "Fourier harmonics": {
+  "family": "signal",
+  "principle": "annual harmonics 1-6 relative to mean depth (strength, timing, sharpness)",
+  "d": 12,
+  "metric": "euclidean",
+  "glacier_recovered": false,
+  "glacier_purity": 0.918918918918919,
+  "glacier_by_region": {
+   "I": [
+    3,
+    0,
+    0
+   ],
+   "II": [
+    4,
+    1,
+    0
+   ],
+   "III": [
+    6,
+    2,
+    0
+   ],
+   "IV": [
+    20,
+    0,
+    0
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    0,
+    2
+   ]
+  },
+  "contiguity": 0.8763652641002686,
+  "climate": 0.7206965034374686,
+  "elev_eta": 0.257767415273404,
+  "split": 0.5568082218416179,
+  "split_sd": 0.03319159949462298,
+  "split_nn": 0.31368762997707844,
+  "era": 0.5023469472084346,
+  "era_nn": 0.255870789501647,
+  "k_c": 3,
+  "cc": 0.4523076923076923,
+  "lam": [
+   0.0084,
+   0.0113,
+   0.0154,
+   0.0283
+  ],
+  "sizes": [
+   1011,
+   1310,
+   816
+  ],
+  "vs_main": 0.32621388559353454
+ },
+ "phenology statistics": {
+  "family": "signal",
+  "principle": "onset, melt-out, duration, peak day, episodes, flashiness (z-scored)",
+  "d": 8,
+  "metric": "euclidean",
+  "glacier_recovered": false,
+  "glacier_purity": 0.9864864864864865,
+  "glacier_by_region": {
+   "I": [
+    3,
+    0,
+    0
+   ],
+   "II": [
+    0,
+    4,
+    1
+   ],
+   "III": [
+    3,
+    1,
+    4
+   ],
+   "IV": [
+    20,
+    0,
+    0
+   ],
+   "V": [
+    41,
+    0,
+    0
+   ],
+   "VI": [
+    0,
+    3,
+    0
+   ],
+   "VII": [
+    0,
+    2,
+    0
+   ]
+  },
+  "contiguity": 0.8486123545210384,
+  "climate": 0.6472793469178696,
+  "elev_eta": 0.1615285166639764,
+  "split": 0.39394214874497796,
+  "split_sd": 0.16621380064410907,
+  "split_nn": 0.20398621673725276,
+  "era": 0.43753232029161215,
+  "era_nn": 0.14039801448153377,
+  "k_c": 4,
+  "cc": 0.4470899470899471,
+  "lam": [
+   0.0088,
+   0.0127,
+   0.0182,
+   0.0216
+  ],
+  "sizes": [
+   792,
+   1210,
+   1135
+  ],
+  "vs_main": 0.646559642128339
+ }
+}

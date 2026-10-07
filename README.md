@@ -30,23 +30,24 @@ Its Laplacian spectrum then lets us study the boundaries between them.
 
 ## 2. Method
 
-- **Vertices:** about 3,800 grid cells (0.25°) on the plateau (26–40°N, 73–105°E), each
-  with at least 30 snow days per year.
+- **Vertices:** 3,137 grid cells (0.25°) on the plateau (26–40°N, 73–105°E), each with
+  at least 60 snow days per year (cells with identical series contracted).
 - **Attributes:** daily snow depth over 14 snow years (1 Aug – 31 Jul), 2000/01–2013/14.
-- **Feature, temporal HOG** (HW1 1-b):
-  - the orientation of each day is the slope angle of the depth curve;
-  - 6 bins, from fast melt to fast accumulation;
+- **Feature, multi-scale temporal HOG** (HW1 1-b):
+  - the rate of change of the depth curve over 1, 7, 15, 31 and 61 days;
+  - its slope angle in 6 bins, from fast melt to fast accumulation;
   - half-month cells, blocks of 2 cells normalised with L2-Hys;
-  - averaged over the 14 years, giving d = 288.
+  - averaged over the 14 years, five lags concatenated, giving d = 1440.
 
-  It captures the timing and speed of snow change, not the amount of snow.
-- **Distance:** square root of the Jensen–Shannon divergence; Hellinger distance as a check.
-- **Graph:** kNN with k = 21–26, symmetrised by union, self-tuning Gaussian weights,
-  normalized Laplacian, spectral clustering.
+  It captures the timing and speed of snow change at several time scales, not the amount
+  of snow. It was chosen from 13 candidate features (`experiment/feature_comparison.md`).
+- **Distance:** Hellinger distance; square root of the Jensen–Shannon divergence as a check.
+- **Graph:** kNN for k = 1–64 (main k = 21), symmetrised by union, self-tuning Gaussian
+  weights, normalized Laplacian (32 smallest eigenvalues), spectral clustering.
 
 | Item | Question it answers |
 |---|---|
-| E-1 | Which temporal resolution reveals the regimes? (Cell length, and so d, is a hyperparameter; the raw depth curve is the baseline.) |
+| E-1 | Which feature, and which time scale of the gradient, reveals the regimes? (13 candidate features compared; the raw depth curve is the baseline.) |
 | E-2 | Are the results robust to the choice of metric? |
 | E-3 | In what order do regions merge as k grows? This ranks how distinct each region is. |
 | E-4 | Do border pixels have lower clustering coefficients? If so, boundaries can be found from graph structure alone. |
